@@ -29,8 +29,12 @@ function checkingParticipants() {
         var number = divParticipants[0].innerHTML
         console.log(number)
         if (number < 3) {
-          var hangoutbuttonclassname = "VfPpkd-Bz112c-LgbsSe yHy1rc eT1oJ tWDL4c  jh0Tpd Gt6sbf QQrMi NKaD6"
+          var hangoutbuttonclassname = "google-material-icons VfPpkd-kBDsod r6Anqf"
+
           var hangoutbutton = document.getElementsByClassName(hangoutbuttonclassname)[0]
+          chrome.storage.local.set({
+            active: "false"
+          });
           hangoutbutton.click();
         }
       }, 1000);
@@ -38,8 +42,4 @@ function checkingParticipants() {
       console.log("Already active")
     }
   });
-}
-
-function noth() {
-  console.log("nothing")
 }
