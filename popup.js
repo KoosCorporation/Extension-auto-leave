@@ -2,8 +2,28 @@ var checkparticipants = document.getElementById("activate");
 var deactivate = document.getElementById("deactivate");
 var spanWrite = document.getElementById("writeP")
 var inputNumMin = document.getElementById("nmin")
-console.log(spanWrite)
 
+//-------------FOCUS ON INPUT DE NUMERO MINIMO
+inputNumMin.focus()
+
+
+//-------------REVISION DE ESTADO
+chrome.storage.local.get("active", ({
+  active
+}) => {
+  if (active == "true") {
+    chrome.storage.local.get("number", ({
+      number
+    }) => {
+      spanWrite.innerHTML = "Activado a: " + number
+    })
+  } else {
+    spanWrite.innerHTML = "Desactivado"
+  }
+});
+
+
+//-------------LISTENER DE PRESIONAR BOTON DE ACTIVACION
 checkparticipants.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({
     active: true,
@@ -25,7 +45,11 @@ checkparticipants.addEventListener("click", async () => {
       (injectionResults) => {
         //-------------for (const frameResult of injectionResults)
         if (injectionResults[0].result) {
-          spanWrite.innerHTML = "Activado"
+          chrome.storage.local.get("number", ({
+            number
+          }) => {
+            spanWrite.innerHTML = "Activado a: " + number
+          })
         } else {
           spanWrite.innerHTML = "No pudo activarse"
         }
@@ -34,7 +58,7 @@ checkparticipants.addEventListener("click", async () => {
   }
 });
 
-
+//-------------LISTENER DE PRESIONAR BOTON DE DESACTICACION
 deactivate.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({
     active: true,
@@ -53,20 +77,17 @@ deactivate.addEventListener("click", async () => {
       } else {
         spanWrite.innerHTML = "No pudo desactivarse"
       }
-      console.log(injectionResults[0].result);
     });
 });
 
 
 function checkingParticipants(NumMin) {
-  console.log(NumMin)
   let divParticipants = document.getElementsByClassName("uGOf1d")[0]
   let hangoutbuttonclassname = "google-material-icons VfPpkd-kBDsod r6Anqf"
   let hangoutbutton = document.getElementsByClassName(hangoutbuttonclassname)[0]
   // -------------VERIFIACION DE ENCUENMTRO DE ELEMENTOS PARA CONTROL 
   var toreturn = ''
   if (divParticipants != undefined & hangoutbutton != undefined) {
-    console.log("todo bien")
     // -------------TOMA LA VARIABLE ACTIVE DE STORAGE PARA VERIFICAR SI ESTA YA EN FUNCIONAMIENTO EL BOT
     chrome.storage.local.get("active", ({
       active
@@ -78,17 +99,12 @@ function checkingParticipants(NumMin) {
           active: "true"
         });
         //-------------NOTIFICACION DE ACTIVACION
-        chrome.notifications.create(
-          "name",
-          {
-            type: "basic",
-            iconUrl: "images/image.jpg",
-            title: "This is a notification",
-            message: "hello there!",
-          },
-          function () {}
-        );
-        // INTERVALO DE 1 SEGUNDO PARA VERIFICAR LOS PARTICIPANTES CONSTANTEMENTE
+        chrome.storage.local.set({
+          number: NumMin
+        })
+        var text = "Activado correctamente con: " + NumMin
+        sendNotTelegram(text)
+        // -------------INTERVALO DE 1 SEGUNDO PARA VERIFICAR LOS PARTICIPANTES CONSTANTEMENTE
         var intervalo = setInterval(() => {
           let divParticipants = document.getElementsByClassName("uGOf1d")
           let number = divParticipants[0].innerHTML
@@ -112,13 +128,10 @@ function checkingParticipants(NumMin) {
             // -------------CUELGA LA LLAMADA
             hangoutbutton.click();
             // -------------ENVIO DE MENSAJE A TELEGRAM COMO NOTIFICACION
-            var token = "5217446941:AAFp8Iiw_Nl8I3IqExyku4CmVSE74-jgnts"
-            var chatid = "1144214477"
-            var text = "Ya fuera de la reunion"
-            var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatid}&text=${text}`
-            let api = new XMLHttpRequest();
-            api.open("GET", url, true);
-            api.send();
+            var text = "! Ya fuera de la reunion !"
+            sendNotTelegram(text)
+            var text = "---===========================---"
+            sendNotTelegram(text)
           }
         }, 1000);
       } else if (active == "true") {
@@ -133,6 +146,15 @@ function checkingParticipants(NumMin) {
     toreturn = false
   }
   return toreturn
+
+  function sendNotTelegram(text) {
+    var token = "5217446941:AAFp8Iiw_Nl8I3IqExyku4CmVSE74-jgnts"
+    var chatid = "1144214477"
+    var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatid}&text=${text}`
+    let api = new XMLHttpRequest();
+    api.open("GET", url, true);
+    api.send();
+  }
 }
 
 function deactivating() {
@@ -140,5 +162,18 @@ function deactivating() {
   chrome.storage.local.set({
     active: "false"
   });
+  var text = "Desactivado"
+  sendNotTelegram(text)
+  var text = "---===========================---"
+  sendNotTelegram(text)
   return true
+
+  function sendNotTelegram(text) {
+    var token = "5217446941:AAFp8Iiw_Nl8I3IqExyku4CmVSE74-jgnts"
+    var chatid = "1144214477"
+    var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatid}&text=${text}`
+    let api = new XMLHttpRequest();
+    api.open("GET", url, true);
+    api.send();
+  }
 }
