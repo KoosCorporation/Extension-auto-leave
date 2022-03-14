@@ -1,16 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="button.css">
-  </head>
-  <body>
-    <span>Ingrese el numero de participantes minimo</span>
+
+<head>
+  <link rel="stylesheet" href="button.css">
+</head>
+
+<body>
+  <div class="main-box">
+    <h1>Colgacion Automatica</h1>
+
+    <h2>Selecciona uno:</h2>
+
+    <!-- // Seleccion de Plataforma -------------------------------------- -->
+    <div class="cont-icons">
+      <div class="icon-box">
+        <div class="cont-img">
+          <img src="/images/Teams-Logo.png" alt="Teams-Logo">
+        </div>
+        <div class="img-name">Teams</div>
+      </div>
+
+      <div class="icon-box">
+        <div class="cont-img">
+          <img src="/images/Meet-Logo.png" alt="Meet-Logo">
+        </div>
+        <div class="img-name">Meet</div>
+      </div>
+
+      <div class="icon-box">
+        <div class="cont-img">
+          <img src="/images/Discord-Logo.png" alt="Discord-Logo">
+        </div>
+        <div class="img-name">Discord</div>
+      </div>
+    </div>
+
+    <div class="division"></div>
+    
+    <!-- //Cantidad de Participantes ------------------------------------------- -->
+    <h2>Cantidad de Participantes</h2>
+    <p>Selecciona la cantidad de participantes que deben de
+      estar presentes en la llamada.</p>
+
+      <div class="cont-participants">
+        <p>Participantes:</p>
+        <input type="number" id="nmin" min="1" value="25" aria-selected="undefined">
+        
+      </div>
+      
+
+
+      <!-- //-------------------------------------------------------------------- -->
+  </div>
+
+
+
+  <!-- Codigo Original ------------------------------------------------------------------------- -->
+
+  <!-- <span>Ingrese el numero de participantes minimo</span>
     <input type="number" id="nmin" min="1" value="25" aria-selected="undefined">
     <button id="activate"></button>
-    <button id="deactivate"></button>
+    <button id="deactivate"></button>                                                        
     <p id = "writeP">Hi</p>
     <p id = "msVerf">Verificar funcionamiento en Inspecionar elemento -> Console</p>
-    <p id = "msRest">Puede resetear el bot recargando la pagina</p>
-    <script src="popup.js"></script>
-  </body>
+    <p id = "msRest">Puede resetear el bot recargando la pagina</p> -->
+
+  <!--  ------------------------------------------------------------------------------------ -->
+  <script src="popup.js"></script>
+</body>
+
 </html>

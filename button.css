@@ -1,3 +1,11 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+
+
 button {
     height: 30px;
     width: 30px;
@@ -6,6 +14,106 @@ button {
     border: none;
     border-radius: 2px;
   }
+
+  body {
+    background: rgba(0, 0, 0, 0.753);
+    border-radius: 25px;
+    width: 250px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-box{
+    width: 87%;
+    height: 90%;
+  }
+
+
+  h1{
+    color: white;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  h2{
+    font-size: 15px;
+    font-weight: normal;
+    color: white;
+  }
+
+  p{
+    font-size: 12;
+    color: rgba(255, 255, 255, 0.753);
+  }
+
+  .cont-icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 85px;
+    margin-bottom: 15px;
+    
+  }
+
+  .icon-box{
+    width: 72px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .icon-box:hover {
+    background: rgba(255, 255, 255, 0.123);
+  }
+
+ 
+
+  .cont-img{
+    width: 80%;
+    height: 50px;
+    
+  }
+
+  .img-name{
+    font-size: 12px;
+    color: white;
+  }
+
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  input[type=number] {
+    appearance: none;
+    height: 25px;
+    width: 40px;
+    border: none;
+    background: none;
+    color: white;
+    margin-left: 5px;
+  }
+
+  .cont-participants{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+  }
+
+ .division{
+   width: 100%;
+   height: 1px;
+   background: rgba(255, 255, 255, 0.151);
+   margin-bottom: 10px;
+   
+ }
   
   button.current {
     box-shadow: 0 0 0 2px white,
