@@ -13,21 +13,21 @@
 
     <!-- // Seleccion de Plataforma -------------------------------------- -->
     <div class="cont-icons">
-      <div class="icon-box">
+      <div id="teams-button" class="icon-box">
         <div class="cont-img">
           <img src="/images/Teams-Logo.png" alt="Teams-Logo">
         </div>
         <div class="img-name">Teams</div>
       </div>
 
-      <div class="icon-box">
+      <div id="meet-button" class="icon-box">
         <div class="cont-img">
           <img src="/images/Meet-Logo.png" alt="Meet-Logo">
         </div>
         <div class="img-name">Meet</div>
       </div>
 
-      <div class="icon-box">
+      <div id="discord-button" class="icon-box">
         <div class="cont-img">
           <img src="/images/Discord-Logo.png" alt="Discord-Logo">
         </div>
@@ -36,21 +36,24 @@
     </div>
 
     <div class="division"></div>
-    
+
     <!-- //Cantidad de Participantes ------------------------------------------- -->
-    <h2>Cantidad de Participantes</h2>
-    <p>Selecciona la cantidad de participantes que deben de
-      estar presentes en la llamada.</p>
+    <h2 class="informative-text">Minimo de Participantes</h2>
 
-      <div class="cont-participants">
-        <p>Participantes:</p>
-        <input type="number" id="nmin" min="1" value="25" aria-selected="undefined">
-        
-      </div>
-      
+    <div class="cont-participants">
+      <p>Cantidad:</p>
+      <input type="number" id="nmin" min="1" value="25" aria-selected="undefined">
+    </div>
+    <p class="cont-avtive-buttons">
+      <button id="activate" class="activation-button active">Activar</button>
+      <button id="deactivate" class="activation-button deactive">Desactivar</button>
+    </p>
+    <p id="writeP2" >Plataforma: Google meet</p>
+    <p id="writeP" >Hi</p>
 
 
-      <!-- //-------------------------------------------------------------------- -->
+
+    <!-- //-------------------------------------------------------------------- -->
   </div>
 
 
@@ -66,7 +69,7 @@
     <p id = "msRest">Puede resetear el bot recargando la pagina</p> -->
 
   <!--  ------------------------------------------------------------------------------------ -->
-  <script src="popup.js"></script>
+  <script src="popup.js" type="module"></script>
 </body>
 
 </html>
